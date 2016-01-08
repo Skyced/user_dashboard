@@ -1,0 +1,22 @@
+<div ng-controller="adminController as adminCtrl">
+<h1>Manage Users</h1>
+<button><a href="#/admin/add">Add new</a></button>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Created at</th>
+		<th>User Level</th>
+		<th>Actions</th>
+	</tr>
+	<tr ng-repeat="user in adminCtrl.users">
+		<td ng-bind="user.id"></td>
+		<td><a href="">{{user.name}}</a></td>
+		<td ng-bind="user.email"></td>
+		<td ng-bind="user.created_at"></td>
+		<td ng-bind="user.user_level"></td>
+		<td><button><a href="">Edit</a></button> <button>Delete</button></td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,17 @@
+<div ng-controller="adminController as adminCtrl">
+	<h1>Add a new user</h1>
+	<a href="#/admin/show">Return to Dashboard</a>
+	<form>
+		<label for="email">Email</label>
+		<input type="text" ng-model="adminCtrl.newUser.email">
+		<label for="first_name">First Name</label>
+		<input type="text" ng-model="adminCtrl.newUser.first_name">
+		<label for="last_name">Last Name</label>
+		<input type="text" ng-model="adminCtrl.newUser.last_name">
+		<label for="password">Password</label>
+		<input type="password" ng-model="adminCtrl.newUser.password">
+		<label for="password_confirmation">Password Confirmation</label>
+		<input type="password" ng-model="adminCtrl.newUser.password_confirmation">
+		<input type="submit" value="Create" ng-click="adminCtrl.createUser()">
+	</form>
+</div>

@@ -1,0 +1,16 @@
+<div ng-controller="userController as userCtrl">
+	<h1>Register</h1>
+	<label for="email">Email</label>
+	<input type="text" ng-model="userCtrl.newUser.email">
+	<label for="first_name"></label>
+	<input type="text" ng-model="userCtrl.newUser.first_name">
+	<label for="last_name"></label>
+	<input type="text" ng-model="userCtrl.newUser.last_name">
+	<label for="password"></label>
+	<input type="password" ng-model="userCtrl.newUser.password">
+	<label for="password_confirmation"></label>
+	<input type="password" ng-model="userCtrl.newUser.password_confirmation">
+	<input type="submit" value="Register" ng-click="userCtrl.createUser()">
+	<span ng-bind="userCtrl.message"></span>
+	<a href="#/user/signin">Already have an account? Login</a>
+</div>

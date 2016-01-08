@@ -1,0 +1,13 @@
+<div ng-controller = "userController as userCtrl">
+	<h1>Sign In</h1>
+
+	<form>
+	<label for="email">Email</label>
+	<input type="text" ng-model="userCtrl.user.email">
+	<label for="password">Password</label>
+	<input type="password" ng-model="userCtrl.user.password">
+	<input type="submit" value="Sign In" ng-click="userCtrl.userLogin()">
+	</form>
+	<span ng-bind="userCtrl.message"></span>
+	<a href="#/user/new">Don't have an account? Register</a>
+</div>

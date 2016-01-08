@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>User Dashboard</title>
+
+	<!-- ANGULAR SOURCE CODE -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.js"></script>
+  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.js"></script>
+
+	<!-- JQUERY -->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script>
+		var myApp = angular.module('myApp', ['ngRoute'])
+
+		myApp.config(function ($routeProvider){
+			$routeProvider
+				.when('/user/signin', {
+					templateUrl: 'partials/user_login.html'
+				})
+				.when('/user/new', {
+					templateUrl: 'partials/user_new.html'
+				})
+				.when('/user/show', {
+					templateUrl: 'partials/user_show.html'
+				})
+				.when('/admin/show', {
+					templateUrl: 'partials/admin_show.html'
+				})
+				.when('/admin/add', {
+					templateUrl: 'partials/admin_add.html'
+				})
+		})
+	</script>
+
+	<script src="/js/factories/user_factory.js"></script>
+	<script src="/js/controllers/user_controller.js"></script>
+	<script src="/js/controllers/admin_controller.js"></script>
+
+</head>
+<body>
+	<a href="#/user/signin">Sign In</a>
+	<div ng-view="">
+	</div>
+</body>
+</html>
