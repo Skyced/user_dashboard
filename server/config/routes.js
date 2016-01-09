@@ -13,4 +13,13 @@ module.exports = function(app) {
 	app.get('/admin/index', function(req, res){
 		methods.FetchAllUsers(req, res);
 	})
+	app.get('/admin/edit', function(req, res){
+		methods.FetchUsertoEdit(req, res);
+	})
+	app.post('/admin/update/:id', function(req, res){
+		methods.UpdateUser(req, res);
+	})
+	app.post('/admin/update_password/:id', function(req, res){
+		methods.UpdatePassword(req, res);
+	})
 }

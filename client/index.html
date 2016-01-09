@@ -24,11 +24,17 @@
 				.when('/user/show', {
 					templateUrl: 'partials/user_show.html'
 				})
+				.when('/user/profile/:user_id', {
+					templateUrl: 'partials/user_profile.html'
+				})
 				.when('/admin/show', {
 					templateUrl: 'partials/admin_show.html'
 				})
 				.when('/admin/add', {
 					templateUrl: 'partials/admin_add.html'
+				})
+				.when('/admin/edit/:user_id', {
+					templateUrl: 'partials/admin_edit.html'
 				})
 		})
 	</script>

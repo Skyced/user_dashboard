@@ -1,3 +1,32 @@
 <div ng-controller="adminController as adminCtrl">
-	<h1>Edit user</h1>
+	<h1>Edit user<span ng-bind"adminCtrl.UserToEdit.id"></span></h1>
+	<a href="#/admin/show">Return to Dashboard</a>
+	{{adminCtrl.UserToEdit.first_name}}
+	<div>
+		<h3>Edit information</h3>
+		<form>
+			<label for="email">Email</label>
+			<input type="text" ng-model="adminCtrl.UserToEdit.email">
+			<label for="first_name">First Name</label>
+			<input type="text" ng-model="adminCtrl.UserToEdit.first_name">
+			<label for="last_name">Last Name</label>
+			<input type="text" ng-model="adminCtrl.UserToEdit.last_name">
+			<label for="user_level">User Level</label>
+			<select name="user_level" ng-model="adminCtrl.UserToEdit.user_level">
+				<option value="1">Normal</option>
+				<option value="9">Admin</option>
+			</select>
+			<input type="submit" value="Save" ng-click="adminCtrl.updateInformation()">
+			<span ng-bind="adminCtrl.update_message"></span>
+		</form>
+	</div>
+	<div>
+		<h3>Change Password</h3>
+		<label for="password">Password</label>
+		<input type="password" placeholder="" ng-model="adminCtrl.newPassword.password">
+		<label for="password_confirmation">Password Confirmation</label>
+		<input type="password" ng-model="adminCtrl.newPassword.password_confirmation">
+		<input type="submit" value="Update Password" ng-click="adminCtrl.updatePassword()">
+		<span ng-bind="adminCtrl.update_password_msg"></span>
+	</div>
 </div>

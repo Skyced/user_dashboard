@@ -1,25 +1,56 @@
 myApp.controller('adminController', function(userFactory) {
 	var that = this;
+	console.log('Admin Controller loaded')
 
 	var authentication = function() {
 		userFactory.authenticate(function(data){
-			console.log(data);
 		})
 	}
 	authentication();
-	
+
 	var getAllUsers = function(){
 		userFactory.getAllUsers(function(data){
-			console.log(data);
 			that.users = data;
 		})
 	}
 	getAllUsers();
 
+	var checkForEdit = function() {
+		userFactory.checkForEdit(function(data){
+			that.UserToEdit = data;
+		})
+	}
+	checkForEdit();
+
 	this.createUser = function() {
-		console.log(this.newUser)
 		userFactory.newUser(this.newUser, function(data){
 			that.message = data;
+		})
+	}
+
+	this.fetchUserProfile = function(user_id){
+		userFactory.fetchUserProfile(user_id, function(data){
+
+		})
+	}
+
+	this.editUser = function(user_id) {
+		userFactory.editUser(user_id, function(data){
+			that.UsertoEdit = data
+		})
+	}
+
+	this.updateInformation = function() {
+		userFactory.updateInformation(this.UserToEdit, function(data){
+			that.update_message = data;
+			checkForEdit();
+			console.log(that.update_message);
+		})
+	}
+
+	this.updatePassword = function() {
+		userFactory.updatePassword(this.newPassword, function(data){
+			that.update_password_msg = data;
 		})
 	}
 })

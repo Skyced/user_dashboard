@@ -12,11 +12,11 @@
 	</tr>
 	<tr ng-repeat="user in adminCtrl.users">
 		<td ng-bind="user.id"></td>
-		<td><a href="">{{user.name}}</a></td>
+		<td><a href="" ng-click="fetchUserProfile(user.id)"><span ng-bind="user.first_name"></span></a></td>
 		<td ng-bind="user.email"></td>
 		<td ng-bind="user.created_at"></td>
 		<td ng-bind="user.user_level"></td>
-		<td><button><a href="">Edit</a></button> <button>Delete</button></td>
+		<td><button ng-click="adminCtrl.editUser(user.id)">Edit</button> <button>Delete</button></td>
 	</tr>
 </table>
 </div>

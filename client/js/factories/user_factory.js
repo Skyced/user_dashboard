@@ -1,4 +1,4 @@
-myApp.factory('userFactory', function($http, $location){
+myApp.factory('userFactory', function($http, $location, $routeParams){
 	var factory = {};
 	console.log('[USERFACTORY] Loaded');
 	factory.authenticate = function(callback){
@@ -11,7 +11,7 @@ myApp.factory('userFactory', function($http, $location){
 			}
 		})
 	}
-	
+
 	factory.newUser = function(info, callback) {
 		$http({
 			url:'/user/create',
@@ -51,6 +51,43 @@ myApp.factory('userFactory', function($http, $location){
 		$http.get('/admin/index').success(function(users){
 			callback(users);
 		})
+	}
+
+	var UserEdit;
+	factory.editUser = function(user_id, callback){
+		$http.get('/admin/edit', {
+			params: { user_id: user_id }
+		})
+		.success(function(data){
+			console.log(data);
+			UserEdit = data;
+			callback(data)
+			$location.path('/admin/edit/'+user_id)
+		})
+	}
+
+	factory.checkForEdit = function(callback){
+		console.log(UserEdit);
+		callback(UserEdit);
+	}
+
+	factory.updateInformation = function(user_info, callback) {
+		$http.post('/admin/update/'+user_info.id, user_info).success(function(data){
+			callback("Updated")
+		})
+	}
+
+	factory.updatePassword = function(newPassword, callback){
+		var id = $routeParams.user_id
+		if(newPassword.password == newPassword.password_confirmation){
+			console.log('HI');
+			$http.post('/admin/update_password/'+id, newPassword).success(function(data){
+				callback(data);
+			})
+		}
+		else {
+			callback("Passwords Do not Match");
+		}
 	}
 	return factory
 })

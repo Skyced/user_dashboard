@@ -80,6 +80,51 @@ module.exports = (function(){
 					return res.json(rows)
 				})
 			}
+		},
+
+		FetchUsertoEdit: function(req, res){
+			console.log(req.query);
+			var query = "SELECT * FROM users WHERE id='"+req.query.user_id+"'"
+			connection.query(query, function (err, rows){
+				if(err){
+					console.log(err)
+					return
+				}
+				console.log(rows[0])
+				return res.json(rows[0])
+			})
+		},
+
+		UpdateUser: function(req, res){
+			console.log('updateuser', req.body);
+			var query = "UPDATE users SET email='"+req.body.email+"', first_name='"+req.body.first_name+"',last_name='"+req.body.last_name+"', user_level='"+req.body.user_level+"', updated_at=NOW() WHERE id='"+req.body.id+"'"
+			connection.query(query, function(err, rows){
+				if(err){
+					console.log(err)
+					return
+				}
+				console.log(rows)
+				return res.json({})
+			})
+		},
+
+		UpdatePassword: function(req, res){
+			console.log('Password', req.body);
+			console.log('params', req.params)
+			bcrypt.genSalt(10, function(err, salt){
+				bcrypt.hash(req.body.password, salt, function(err, hash){
+					console.log(hash);
+					var query = "UPDATE users SET password='"+hash+"' WHERE id='"+req.params.id+"'"
+					connection.query(query, function (err, rows){
+						if (err) {
+							console.log(err)
+							return
+						}
+						console.log('return to factory');
+						return res.json('Password Updated');
+					})
+				})
+			})	
 		}
 	}
 })();
