@@ -12,7 +12,7 @@
 	</tr>
 	<tr ng-repeat="user in adminCtrl.users">
 		<td ng-bind="user.id"></td>
-		<td><a href="" ng-click="fetchUserProfile(user.id)"><span ng-bind="user.first_name"></span></a></td>
+		<td><a href="" ng-click="adminCtrl.fetchUserProfile(user.id)"><span ng-bind="user.first_name"></span></a></td>
 		<td ng-bind="user.email"></td>
 		<td ng-bind="user.created_at"></td>
 		<td ng-bind="user.user_level"></td>

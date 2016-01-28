@@ -1,3 +1,13 @@
-<div ng-controller="userContrller as userCtrl">
-	HI
+<div ng-controller="userController as userCtrl">
+	<h1 ng-bind="userCtrl.UserProfile.first_name"></h1>
+	<p> Registered at: <span ng-bind="userCtrl.UserProfile.created_at"></span></p>
+	<p> User Id: <span ng-bind="userCtrl.UserProfile.id"></span></p>
+	<p> Email Address: <span ng-bind="userCtrl.UserProfile.email"></span></p>
+	<p> Description: <span ng-bind="userCtrl.UserProfile.description"></span></p>
+
+	<h2>Leave a message for <span ng-bind="userCtrl.UserProfile.first_name"></span>:</h2>
+	<textarea ng-model="userCtrl.Message.message"></textarea>
+	<button ng-click="userCtrl.addNewMessage()">Post</button>
+	<div id="posts">
+	</div>
 </div>

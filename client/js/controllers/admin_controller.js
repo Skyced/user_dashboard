@@ -30,7 +30,7 @@ myApp.controller('adminController', function(userFactory) {
 
 	this.fetchUserProfile = function(user_id){
 		userFactory.fetchUserProfile(user_id, function(data){
-
+			that.UserProfile = data;
 		})
 	}
 

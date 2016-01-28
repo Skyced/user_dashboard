@@ -125,6 +125,32 @@ module.exports = (function(){
 					})
 				})
 			})	
+		},
+
+		FetchUserProfile: function(req, res){
+			console.log(req.body, req.params)
+			var query = "SELECT * FROM users WHERE id='"+req.params.id+"'";
+			connection.query(query, function(err, rows){
+				if (err) {
+					console.log(err)
+					return
+				}
+				console.log(rows)
+				return res.json(rows[0])
+			})
+		},
+
+		AddNewMessage: function(req, res){
+			console.log('req.body',req.body)
+			console.log('session',req.session.user.id)
+			// var query = "INSERT INTO messages (content, created_at, updated_at, user_id) VALUES ('"+req.body.message+"', NOW(), NOW(), '"+req.session.user.id+"')"
+			// connection.query(query, function(err, rows){
+			// 	if (err) {
+			// 		console.log('messageerror',err)
+			// 		return
+			// 	}
+			// 	return res.json({})
+			// })
 		}
 	}
 })();

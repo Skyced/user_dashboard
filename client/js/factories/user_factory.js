@@ -53,7 +53,30 @@ myApp.factory('userFactory', function($http, $location, $routeParams){
 		})
 	}
 
-	var UserEdit;
+	var User;
+	factory.fetchUserProfile = function(user_id, callback){
+		$http.get('/user/show/'+user_id).success(function(data){
+			console.log('user', data);
+			User = data;
+			callback(data);
+			$location.path('/user/show/'+user_id)
+		})
+	}
+
+	factory.LoadUserProfile = function(callback){
+		callback(User)
+	}
+
+	factory.AddNewMessage = function (message, callback){
+		var id = $routeParams.user_id;
+		$http.post('/user/message/'+id, message).success(function(data){
+			callback("Added")
+		})
+	}
+
+	// factory.FetchMessages = function ()
+
+	var UserEdit
 	factory.editUser = function(user_id, callback){
 		$http.get('/admin/edit', {
 			params: { user_id: user_id }

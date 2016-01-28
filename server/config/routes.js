@@ -22,4 +22,12 @@ module.exports = function(app) {
 	app.post('/admin/update_password/:id', function(req, res){
 		methods.UpdatePassword(req, res);
 	})
+	app.get('/user/show/:id', function(req, res){
+		methods.FetchUserProfile(req, res);
+	})
+	
+	app.post('/user/message/:id', function(req, res){
+		console.log('hi');
+		methods.AddNewMessage(req, res);
+	})
 }
