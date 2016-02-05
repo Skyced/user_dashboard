@@ -70,11 +70,24 @@ myApp.factory('userFactory', function($http, $location, $routeParams){
 	factory.AddNewMessage = function (message, callback){
 		var id = $routeParams.user_id;
 		$http.post('/user/message/'+id, message).success(function(data){
-			callback("Added")
+			callback("Message Posted")
 		})
 	}
 
-	// factory.FetchMessages = function ()
+	factory.fetchMessages = function(callback){
+		var id = $routeParams.user_id;
+		$http.get('/user/message/'+id).success(function(data){
+			console.log(data)
+			callback(data)
+		})
+	}
+
+	factory.newComment = function (comment, callback){
+		var id = $routeParmas.user_id;
+		$http.post('/user/comment/'+id, comment).success(function(data){
+			callback();
+		})
+	}
 
 	var UserEdit
 	factory.editUser = function(user_id, callback){

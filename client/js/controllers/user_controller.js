@@ -16,6 +16,13 @@ myApp.controller('userController', function(userFactory) {
 		})
 	}
 
+	var fetchMessages = function() {
+		userFactory.fetchMessages(function(data){
+			that.userMessages = data
+		})
+	}
+	fetchMessages();
+
 	this.createUser = function() {
 		console.log(this.newUser)
 		userFactory.newUser(this.newUser, function(data) {
@@ -36,6 +43,14 @@ myApp.controller('userController', function(userFactory) {
 		console.log(this.Message)
 		userFactory.AddNewMessage(this.Message, function(data){
 			that.messageStatus = data
+			that.fetchMessages();
+		})
+	}
+
+	this.newComment = function() {
+		console.log(this.Comment)
+		userFactory.newComment(this.newComment, function(data){
+
 		})
 	}
 })

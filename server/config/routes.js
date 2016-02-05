@@ -27,7 +27,14 @@ module.exports = function(app) {
 	})
 	
 	app.post('/user/message/:id', function(req, res){
-		console.log('hi');
 		methods.AddNewMessage(req, res);
+	})
+
+	app.get('/user/message/:id', function(req, res){
+		methods.fetchUserMessages(req, res);
+	})
+
+	app.post('/user/comment/:id', function(req, res){
+		methods.addComment(req, res);
 	})
 }

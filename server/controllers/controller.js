@@ -143,14 +143,32 @@ module.exports = (function(){
 		AddNewMessage: function(req, res){
 			console.log('req.body',req.body)
 			console.log('session',req.session.user.id)
-			// var query = "INSERT INTO messages (content, created_at, updated_at, user_id) VALUES ('"+req.body.message+"', NOW(), NOW(), '"+req.session.user.id+"')"
-			// connection.query(query, function(err, rows){
-			// 	if (err) {
-			// 		console.log('messageerror',err)
-			// 		return
-			// 	}
-			// 	return res.json({})
-			// })
+			console.log('req.params', req.params)
+			var query = "INSERT INTO messages (content, created_at, updated_at, user_id, profile_id) VALUES ('"+req.body.message+"', NOW(), NOW(), '"+req.session.user.id+"', '"+req.params.id+"')"
+			connection.query(query, function(err, rows){
+				if (err) {
+					console.log('messageerror',err)
+					return
+				}
+				return res.json({})
+			})
+		},
+
+		fetchUserMessages: function(req, res){
+			console.log('req.params', req.params)
+			var query = "SELECT users.first_name AS First_Name, messages.id, messages.content, messages.created_at FROM users JOIN messages ON users.id = messages.user_id WHERE messages.profile_id = '"+req.params.id+"'"
+			connection.query(query, function(err, rows){
+				if(err){
+					console.log('error', err)
+					return
+				}
+				return res.json(rows);
+			})
+		},
+
+		addComment: function(req ,res){
+			console.log(req.params.id)
+			console.log(req.body)
 		}
 	}
 })();

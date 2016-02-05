@@ -8,6 +8,18 @@
 	<h2>Leave a message for <span ng-bind="userCtrl.UserProfile.first_name"></span>:</h2>
 	<textarea ng-model="userCtrl.Message.message"></textarea>
 	<button ng-click="userCtrl.addNewMessage()">Post</button>
-	<div id="posts">
+	<div id="posts" ng-repeat="message in userCtrl.userMessages">
+		<div id="message">
+			<span ng-bind="message.content"></span>
+			<div id="comment">
+				<input type="textbox" ng-model="userCtrl.Comment.[message.id]">
+				<input type="submit" ng-click="userCtrl.newComment()">
+			</div>
+		</div>
 	</div>
 </div>
+<style>
+#message {
+	border: 1px solid black;
+}
+</style>
